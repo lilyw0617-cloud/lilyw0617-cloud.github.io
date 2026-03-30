@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>K-Culture Connect - Statistics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: #f9f7fe;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header Navigation */
+    header {
+      background: linear-gradient(135deg, #fff5f8, #f0f8ff, #f5fff8);
+      padding: 20px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #c71585;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: #ff69b4;
+      color: white;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .content-section {
+      background: rgba(255,255,255,0.9);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      padding: 60px;
+      margin-bottom: 40px;
+    }
+
+    .content-section h1 {
+      color: #c71585;
+      margin-bottom: 1.5em;
+      text-align: center;
+      font-weight: 700;
+      font-size: 2.5em;
+    }
+
+    .content-section h2 {
+      color: #c71585;
+      margin-top: 2em;
+      margin-bottom: 1.5em;
+      font-weight: 700;
+      font-size: 1.8em;
+    }
+
+    .content-section h2:first-of-type {
+      margin-top: 0;
+    }
+
+    .stats-intro {
+      text-align: center;
+      font-size: 1.1em;
+      color: #666;
+      margin-bottom: 2em;
+    }
+
+    .charts-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .chart-wrapper {
+      background: rgba(255, 105, 180, 0.05);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 2px 10px rgba(199, 21, 133, 0.1);
+    }
+
+    .chart-wrapper h3 {
+      text-align: center;
+      color: #c71585;
+      margin-top: 0;
+      font-size: 1.3em;
+    }
+
+    .chart-canvas {
+      position: relative;
+      height: 300px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 2em 0;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #ff69b4, #ff1493);
+      color: white;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(199, 21, 133, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-number {
+      font-size: 2.5em;
+      font-weight: 700;
+      margin: 10px 0;
+    }
+
+    .stat-label {
+      font-size: 1em;
+      opacity: 0.9;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #999;
+      border-top: 1px solid #eee;
+      margin-top: 3em;
+    }
+
+    @media (max-width: 768px) {
+      .charts-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .content-section {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">K-Culture Connect</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="problem.html">Problem</a></li>
+        <li><a href="solution.html">Solution</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="prototype.html">Prototype</a></li>
+        <li><a href="stats.html" class="active">Statistics</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="content-section">
+      <h1>📊 Platform Statistics</h1>
+      <p class="stats-intro">Discover how K-Culture Connect is helping learners around the world engage with Korean language and culture.</p>
+
+      <!-- Key Metrics Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Interactions</div>
+          <div class="stat-number">1,500</div>
+          <div class="stat-label">per day</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Active Users</div>
+          <div class="stat-number">850+</div>
+          <div class="stat-label">worldwide</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Learning Modules</div>
+          <div class="stat-number">45</div>
+          <div class="stat-label">available</div>
+        </div>
+      </div>
+
+      <h2>Feature Usage</h2>
+      <div class="charts-container">
+        <div class="chart-wrapper">
+          <h3>Daily Usage by Feature</h3>
+          <div class="chart-canvas">
+            <canvas id="usageChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-wrapper">
+          <h3>Feature Distribution</h3>
+          <div class="chart-canvas">
+            <canvas id="pieChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <h2>User Growth Trend</h2>
+      <div class="chart-wrapper" style="margin-bottom: 2em;">
+        <h3>Monthly User Growth</h3>
+        <div class="chart-canvas" style="height: 350px;">
+          <canvas id="growthChart"></canvas>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>Data collected from January 2024 to March 2026</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Chart 1: Bar Chart - Daily Usage by Feature
+    const usageCtx = document.getElementById('usageChart').getContext('2d');
+    new Chart(usageCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Video Lessons', 'Vocabulary', 'Q&A Forum'],
+        datasets: [{
+          label: 'Daily Usage',
+          data: [500, 200, 800],
+          backgroundColor: [
+            'rgba(255, 105, 180, 0.7)',
+            'rgba(199, 21, 133, 0.7)',
+            'rgba(255, 20, 147, 0.7)'
+          ],
+          borderColor: [
+            '#ff69b4',
+            '#c71585',
+            '#ff1493'
+          ],
+          borderWidth: 2,
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              font: {
+                family: "'Quicksand', sans-serif"
+              }
+            },
+            grid: {
+              color: 'rgba(0, 0, 0, 0.05)'
+            }
+          },
+          x: {
+            ticks: {
+              font: {
+                family: "'Quicksand', sans-serif"
+              }
+            },
+            grid: {
+              display: false
+            }
+          }
+        }
+      }
+    });
+
+    // Chart 2: Pie Chart - Feature Distribution
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    new Chart(pieCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Video Lessons', 'Vocabulary', 'Q&A Forum'],
+        datasets: [{
+          data: [500, 200, 800],
+          backgroundColor: [
+            'rgba(255, 105, 180, 0.8)',
+            'rgba(199, 21, 133, 0.8)',
+            'rgba(255, 20, 147, 0.8)'
+          ],
+          borderColor: [
+            '#ff69b4',
+            '#c71585',
+            '#ff1493'
+          ],
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              font: {
+                family: "'Quicksand', sans-serif",
+                size: 13
+              },
+              padding: 15
+            }
+          }
+        }
+      }
+    });
+
+    // Chart 3: Line Chart - User Growth Trend
+    const growthCtx = document.getElementById('growthChart').getContext('2d');
+    new Chart(growthCtx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Monthly Active Users',
+          data: [150, 180, 220, 280, 350, 420, 500, 580, 650, 720, 800, 850],
+          borderColor: '#c71585',
+          backgroundColor: 'rgba(199, 21, 133, 0.1)',
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4,
+          pointRadius: 5,
+          pointBackgroundColor: '#ff69b4',
+          pointBorderColor: '#c71585',
+          pointBorderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            labels: {
+              font: {
+                family: "'Quicksand', sans-serif",
+                size: 13
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              font: {
+                family: "'Quicksand', sans-serif"
+              }
+            },
+            grid: {
+              color: 'rgba(0, 0, 0, 0.05)'
+            }
+          },
+          x: {
+            ticks: {
+              font: {
+                family: "'Quicksand', sans-serif"
+              }
+            },
+            grid: {
+              display: false
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

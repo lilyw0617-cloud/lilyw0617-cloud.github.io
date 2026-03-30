@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>K-Culture Connect - Learn Korean with Fun</title>
+  <title>K-Culture Connect - Resources</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -92,31 +92,75 @@
       color: #666;
     }
 
-    .slogan {
-      font-size: 1.8em;
-      font-weight: bold;
-      color: #ff69b4;
-      margin: 1.5em 0;
-    }
-
-    .highlight {
-      background: rgba(255,245,250,0.9);
-      padding: 28px;
+    section {
+      margin-bottom: 80px;
+      padding: 40px;
+      background: rgba(255,255,255,0.9);
       border-radius: 16px;
-      margin: 30px auto;
-      max-width: 820px;
-      border: 2px solid #ffb6c1;
-      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     }
 
-    .cta-section {
+    h2 {
+      color: #c71585;
       text-align: center;
+      font-size: 2em;
+      margin-bottom: 2rem;
+      margin-top: 0;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
       margin: 60px 0;
+    }
+
+    .resource-card {
+      background: rgba(255,245,250,0.9);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      text-align: center;
+      transition: transform 0.3s;
+      border-left: 4px solid #ff69b4;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .resource-card h3 {
+      color: #c71585;
+      margin-bottom: 1em;
+    }
+
+    .resource-card a {
+      background: #ff69b4;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .resource-card a:hover {
+      background: #ff1493;
+      transform: translateY(-2px);
+    }
+
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-around;
+      max-width: 600px;
+      margin: 60px auto;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
     .link-button {
       display: inline-block;
-      margin: 1.5em 1em;
       padding: 14px 32px;
       background: #ff69b4;
       color: white;
@@ -133,32 +177,6 @@
       transform: translateY(-3px);
     }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin: 60px 0;
-    }
-
-    .feature-card {
-      background: rgba(255,255,255,0.9);
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      text-align: center;
-      transition: transform 0.3s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .feature-card h3 {
-      color: #c71585;
-      margin-bottom: 1em;
-    }
-
-    /* Footer */
     footer {
       background: #333;
       color: white;
@@ -177,8 +195,13 @@
         font-size: 2em;
       }
 
-      .features-grid {
+      .resources-grid {
         grid-template-columns: 1fr;
+      }
+
+      .navigation-buttons {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -189,10 +212,10 @@
     <nav>
       <a href="index.html" class="logo">K-Culture Connect</a>
       <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="app.html">App</a></li>
         <li><a href="vocabulary.html">Vocabulary</a></li>
-        <li><a href="resources.html">Resources</a></li>
+        <li><a href="resources.html" class="active">Resources</a></li>
         <li><a href="problem.html">Problem</a></li>
         <li><a href="solution.html">Solution</a></li>
         <li><a href="process.html">Process</a></li>
@@ -203,38 +226,50 @@
 
   <main>
     <section class="hero-section">
-      <h1>Technology to Learn Korean Language & Culture</h1>
-      <p>Group members: Wong Ming Lai · Yu Ying Ling</p>
-      <div class="slogan">Learn Korean with Fun & Culture!</div>
-      <div class="highlight">
-        <p style="font-size: 1.2em; margin: 0;">An interactive web platform that combines Korean language learning with cultural immersion through AI-powered conversations, pronunciation feedback, and cultural content.</p>
-      </div>
+      <h1>Learning Resources</h1>
+      <p>Explore recommended resources to support your Korean learning journey</p>
     </section>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <h3>🤖 AI-Powered Learning</h3>
-        <p>Practice speaking with AI characters in authentic cultural scenarios</p>
-      </div>
-      <div class="feature-card">
-        <h3>🎯 Pronunciation Feedback</h3>
-        <p>Real-time audio analysis for accurate Korean pronunciation</p>
-      </div>
-      <div class="feature-card">
-        <h3>🌏 Cultural Immersion</h3>
-        <p>Interactive content about K-pop, K-dramas, food, and etiquette</p>
-      </div>
-      <div class="feature-card">
-        <h3>🎮 Gamified Experience</h3>
-        <p>Points, badges, and progress tracking to keep you motivated</p>
-      </div>
-    </div>
+    <section>
+      <h2>Recommended Resources</h2>
+      <div class="resources-grid">
+        <div class="resource-card">
+          <h3>📺 Video Tutorials</h3>
+          <p>Learn from engaging Korean language YouTube channels with fun explanations of grammar and pronunciation</p>
+          <a href="#" target="_blank">Explore Videos</a>
+        </div>
 
-    <div class="cta-section">
-      <a href="app.html" class="link-button">🎉 Try Our App</a>
-      <a href="problem.html" class="link-button">Explore the Problem</a>
-      <a href="solution.html" class="link-button">View Our Solution</a>
-    </div>
+        <div class="resource-card">
+          <h3>📚 Study Guides</h3>
+          <p>Comprehensive PDF guides and study materials covering grammar, vocabulary, and pronunciation tips</p>
+          <a href="#" target="_blank">Download Guides</a>
+        </div>
+
+        <div class="resource-card">
+          <h3>🎧 Podcasts</h3>
+          <p>Listen to Korean language learning podcasts with daily lessons and cultural insights</p>
+          <a href="#" target="_blank">Listen Now</a>
+        </div>
+
+        <div class="resource-card">
+          <h3>📖 Online Courses</h3>
+          <p>Structured online courses from beginner to advanced level with interactive exercises</p>
+          <a href="#" target="_blank">Browse Courses</a>
+        </div>
+
+        <div class="resource-card">
+          <h3>🎮 Games & Apps</h3>
+          <p>Gamified learning apps to make practicing Korean fun and engaging every day</p>
+          <a href="#" target="_blank">Discover Apps</a>
+        </div>
+
+        <div class="resource-card">
+          <h3>🌏 Cultural Content</h3>
+          <p>K-pop, K-drama, and Korean media resources to immerse yourself in the language and culture</p>
+          <a href="#" target="_blank">Explore Content</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>K-Culture Connect - Learn Korean with Fun</title>
+  <title>K-Culture Connect - Our Process</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -70,33 +70,42 @@
       padding: 40px 20px;
     }
 
-    .hero-section {
-      text-align: center;
-      padding: 80px 20px;
+    .content-section {
       background: rgba(255,255,255,0.9);
       border-radius: 16px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      margin-bottom: 60px;
+      padding: 60px;
+      margin-bottom: 40px;
     }
 
-    .hero-section h1 {
+    .content-section h1, .content-section h2 {
       color: #c71585;
-      font-size: 3em;
-      margin-bottom: 0.5em;
+      margin-bottom: 1.5em;
+      text-align: center;
       font-weight: 700;
     }
 
-    .hero-section p {
-      font-size: 1.4em;
-      margin: 1em 0;
-      color: #666;
+    .content-section h1 {
+      font-size: 2.5em;
     }
 
-    .slogan {
-      font-size: 1.8em;
-      font-weight: bold;
-      color: #ff69b4;
-      margin: 1.5em 0;
+    .content-section h2 {
+      font-size: 2em;
+      margin-top: 0;
+    }
+
+    .content-section ol {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 1.1em;
+      line-height: 1.6;
+      padding-left: 20px;
+    }
+
+    .content-section ol li {
+      margin: 0.8em 0;
+      padding: 8px 0;
     }
 
     .highlight {
@@ -109,14 +118,15 @@
       text-align: center;
     }
 
-    .cta-section {
-      text-align: center;
-      margin: 60px 0;
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+      max-width: 400px;
+      margin: 40px auto;
     }
 
     .link-button {
       display: inline-block;
-      margin: 1.5em 1em;
       padding: 14px 32px;
       background: #ff69b4;
       color: white;
@@ -131,31 +141,6 @@
     .link-button:hover {
       background: #ff1493;
       transform: translateY(-3px);
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin: 60px 0;
-    }
-
-    .feature-card {
-      background: rgba(255,255,255,0.9);
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      text-align: center;
-      transition: transform 0.3s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .feature-card h3 {
-      color: #c71585;
-      margin-bottom: 1em;
     }
 
     /* Footer */
@@ -173,12 +158,14 @@
         display: none;
       }
 
-      .hero-section h1 {
-        font-size: 2em;
+      .content-section {
+        padding: 30px 20px;
       }
 
-      .features-grid {
-        grid-template-columns: 1fr;
+      .navigation-buttons {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
       }
     }
   </style>
@@ -189,52 +176,34 @@
     <nav>
       <a href="index.html" class="logo">K-Culture Connect</a>
       <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="app.html">App</a></li>
         <li><a href="vocabulary.html">Vocabulary</a></li>
         <li><a href="resources.html">Resources</a></li>
         <li><a href="problem.html">Problem</a></li>
         <li><a href="solution.html">Solution</a></li>
-        <li><a href="process.html">Process</a></li>
+        <li><a href="process.html" class="active">Process</a></li>
         <li><a href="impact.html">Impact</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="hero-section">
-      <h1>Technology to Learn Korean Language & Culture</h1>
-      <p>Group members: Wong Ming Lai · Yu Ying Ling</p>
-      <div class="slogan">Learn Korean with Fun & Culture!</div>
+    <section class="content-section">
+      <h1>Our Creation Process</h1>
+      <ol>
+        <li>Lesson 2 — Identified key pain points in learning Korean</li>
+        <li>Lesson 3 — Drew initial prototype sketches</li>
+        <li>Lesson 4 — Developed QR code concept and practiced HTML</li>
+        <li>Lesson 5 — Tested AI tools for Korean dialogues and pronunciation feedback</li>
+        <li>Lesson 6 — Combined everything into a working cultural learning webpage</li>
+      </ol>
       <div class="highlight">
-        <p style="font-size: 1.2em; margin: 0;">An interactive web platform that combines Korean language learning with cultural immersion through AI-powered conversations, pronunciation feedback, and cultural content.</p>
+        <p style="margin: 0;"><strong>Tools used:</strong> Canva, Grok/ChatGPT, HTML/CSS/JS</p>
+        <p style="margin: 1em 0 0 0;"><strong>分工:</strong> Wong Ming Lai — Prototype & design · Yu Ying Ling — AI testing & presentation</p>
       </div>
     </section>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <h3>🤖 AI-Powered Learning</h3>
-        <p>Practice speaking with AI characters in authentic cultural scenarios</p>
-      </div>
-      <div class="feature-card">
-        <h3>🎯 Pronunciation Feedback</h3>
-        <p>Real-time audio analysis for accurate Korean pronunciation</p>
-      </div>
-      <div class="feature-card">
-        <h3>🌏 Cultural Immersion</h3>
-        <p>Interactive content about K-pop, K-dramas, food, and etiquette</p>
-      </div>
-      <div class="feature-card">
-        <h3>🎮 Gamified Experience</h3>
-        <p>Points, badges, and progress tracking to keep you motivated</p>
-      </div>
-    </div>
-
-    <div class="cta-section">
-      <a href="app.html" class="link-button">🎉 Try Our App</a>
-      <a href="problem.html" class="link-button">Explore the Problem</a>
-      <a href="solution.html" class="link-button">View Our Solution</a>
-    </div>
   </main>
 
   <footer>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>K-Culture Connect - Learn Korean with Fun</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: #f9f7fe;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header Navigation */
+    header {
+      background: linear-gradient(135deg, #fff5f8, #f0f8ff, #f5fff8);
+      padding: 20px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #c71585;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: #ff69b4;
+      color: white;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    section {
+      margin-bottom: 80px;
+      padding: 40px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    section h1, section h2 {
+      color: #c71585;
+      margin-bottom: 1.5em;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    section h2 {
+      font-size: 2em;
+      margin-top: 0;
+    }
+
+    section ul {
+      list-style: none;
+      padding: 0;
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.1em;
+    }
+
+    section li {
+      margin: 1em 0;
+      background: rgba(255,245,250,0.9);
+      padding: 16px 24px;
+      border-radius: 12px;
+      border-left: 4px solid #ff69b4;
+    }
+
+    section ol {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 1.1em;
+      line-height: 1.6;
+      padding-left: 20px;
+    }
+
+    section ol li {
+      margin: 0.8em 0;
+      padding: 8px 0;
+    }
+
+    .slogan {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #ff69b4;
+      margin: 1.5em 0;
+      text-align: center;
+    }
+
+    .highlight {
+      background: rgba(255,245,250,0.9);
+      padding: 28px;
+      border-radius: 16px;
+      margin: 30px auto;
+      max-width: 820px;
+      border: 2px solid #ffb6c1;
+      text-align: center;
+    }
+
+    .small-note {
+      font-size: 0.95em;
+      color: #666;
+      margin-top: 1.8em;
+      text-align: center;
+    }
+
+    .link-button {
+      display: inline-block;
+      margin: 1.5em 0;
+      padding: 14px 32px;
+      background: #ff69b4;
+      color: white;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(255,105,180,0.4);
+      transition: all 0.3s;
+    }
+
+    .link-button:hover {
+      background: #ff1493;
+      transform: translateY(-3px);
+    }
+
+    .thanks {
+      background: linear-gradient(135deg, #ffb6c1, #add8e6, #b2f2bb);
+      color: #222;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 20px;
+        margin-bottom: 40px;
+      }
+
+      .logo {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+  <script>
+    // Smooth scrolling for navigation links
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-links a');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
+
+          if (targetSection) {
+            targetSection.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+
+          // Update active link
+          navLinks.forEach(link => link.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      // Update active link on scroll
+      window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section');
+        const scrollPosition = window.scrollY + 100;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const sectionId = section.getAttribute('id');
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === '#' + sectionId) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">K-Culture Connect</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#impact">Impact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Home Section -->
+    <section id="home">
+      <h1>Technology to Learn Korean Language & Culture</h1>
+      <p style="font-size:1.4em; margin:2em 0; text-align: center;">Group members: Wong Ming Lai · Yu Ying Ling</p>
+      <div class="slogan">Learn Korean with Fun & Culture!</div>
+      <div class="highlight">
+        <p style="font-size: 1.2em; margin: 0;">An interactive web platform that combines Korean language learning with cultural immersion through AI-powered conversations, pronunciation feedback, and cultural content.</p>
+      </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem">
+      <h2>Learning Challenges / Problem Statement</h2>
+      <ul>
+        <li>Hangul is easy to read, but pronunciation is very difficult to master (e.g., batchim, tense/lax consonants)</li>
+        <li>Memorizing words without cultural context makes them easy to forget</li>
+        <li>Lack of interaction leads to shallow understanding of Korean culture (K-pop, K-dramas, food, etiquette)</li>
+        <li>Traditional learning methods feel boring and lack immediate feedback</li>
+      </ul>
+      <p style="margin:2em 0; font-weight:bold; font-size:1.2em; text-align: center;">Target users: Absolute beginners or elementary learners who want to learn Korean and experience the culture in a fun, technology-driven way</p>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution">
+      <h2>Our Solution: K-Culture Connect</h2>
+      <div class="highlight">
+        <p style="font-size: 1.3em; margin: 0; font-weight: bold;">A comprehensive Korean learning platform featuring:</p>
+      </div>
+      <ul>
+        <li><strong>AI-Powered Conversations:</strong> Practice speaking with AI characters in cultural scenarios</li>
+        <li><strong>Pronunciation Feedback:</strong> Real-time audio analysis for accurate Korean pronunciation</li>
+        <li><strong>Cultural Immersion:</strong> Interactive content about K-pop, K-dramas, food, and etiquette</li>
+        <li><strong>Gamified Learning:</strong> Points, badges, and progress tracking to keep learners motivated</li>
+        <li><strong>QR Code Integration:</strong> Connect physical learning materials with digital experiences</li>
+      </ul>
+      <div class="highlight">
+        <h3 style="margin-top: 0; color: #c71585;">Working Prototype Features:</h3>
+        <ul style="text-align: left;">
+          <li>Simulated QR scanning (via link input) → displays Korean word and cultural info</li>
+          <li>Basic AI chat interface (or link to external AI service)</li>
+          <li>Clean and friendly interface design</li>
+        </ul>
+        <p style="margin: 1em 0;"><strong>Demo Link:</strong> <a href="https://codepen.io/Yin-Ling-Yu/full/myrPgJo" target="_blank" rel="noopener" style="color: #ff69b4; font-weight: bold;">View Live Prototype</a></p>
+      </div>
+      <div class="small-note">
+        Built with modern web technologies and AI to create an engaging, interactive learning experience.
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process">
+      <h2>Our Creation Process</h2>
+      <ol>
+        <li>Lesson 2 — Identified key pain points in learning Korean</li>
+        <li>Lesson 3 — Drew initial prototype sketches</li>
+        <li>Lesson 4 — Developed QR code concept and practiced HTML</li>
+        <li>Lesson 5 — Tested AI tools for Korean dialogues and pronunciation feedback</li>
+        <li>Lesson 6 — Combined everything into a working cultural learning webpage</li>
+      </ol>
+      <p style="margin:2em 0; text-align: center;"><strong>Tools used:</strong> Canva, Grok/ChatGPT, HTML/CSS/JS</p>
+      <p style="text-align: center;"><strong>分工:</strong> Wong Ming Lai — Prototype & design · Yu Ying Ling — AI testing & presentation</p>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="thanks">
+      <h2>Expected Impact & Reflection</h2>
+      <div class="highlight">
+        <p style="font-size: 1.3em; margin: 0; line-height: 1.6;">
+          Transform boring memorization into an engaging, immersive Korean learning experience.<br>
+          Increase motivation, improve long-term retention, and deepen cultural understanding.
+        </p>
+      </div>
+      <ul>
+        <li><strong>Educational Value:</strong> Makes Korean learning accessible and enjoyable for beginners</li>
+        <li><strong>Cultural Exchange:</strong> Bridges the gap between language learning and cultural understanding</li>
+        <li><strong>Technology Innovation:</strong> Demonstrates how AI can enhance language education</li>
+        <li><strong>User Engagement:</strong> Gamification and interactive elements keep learners motivated</li>
+      </ul>
+      <div class="highlight">
+        <p style="font-size: 1.2em; margin: 0;">Thank you for exploring K-Culture Connect! We're excited to bring innovative Korean language learning to the world.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 K-Culture Connect. Created by Wong Ming Lai & Yu Ying Ling.</p>
+  </footer>
+
+</body>
+</html>

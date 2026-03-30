@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>K-Culture Connect - Vocabulary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: #f9f7fe;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header Navigation */
+    header {
+      background: linear-gradient(135deg, #fff5f8, #f0f8ff, #f5fff8);
+      padding: 20px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #c71585;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: #ff69b4;
+      color: white;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 80px 20px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      margin-bottom: 60px;
+    }
+
+    .hero-section h1 {
+      color: #c71585;
+      font-size: 3em;
+      margin-bottom: 0.5em;
+      font-weight: 700;
+    }
+
+    .hero-section p {
+      font-size: 1.4em;
+      margin: 1em 0;
+      color: #666;
+    }
+
+    section {
+      margin-bottom: 80px;
+      padding: 40px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      color: #c71585;
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 2rem;
+      margin-top: 0;
+    }
+
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+    }
+
+    .vocab-card {
+      background: rgba(255,245,250,0.9);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      text-align: center;
+      transition: transform 0.3s;
+      border-left: 4px solid #ff69b4;
+      height: auto;
+      position: relative;
+      overflow: visible;
+      cursor: pointer;
+    }
+
+    .vocab-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-front {
+      padding: 20px;
+    }
+
+    .korean {
+      font-size: 2.5em;
+      font-weight: bold;
+      margin-bottom: 1em;
+      color: #c71585;
+    }
+
+    .english {
+      font-size: 1.2em;
+      color: #666;
+      margin-bottom: 1em;
+    }
+
+    .example {
+      font-size: 0.95em;
+      color: #999;
+      font-style: italic;
+      margin-top: 1em;
+    }
+
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-around;
+      max-width: 600px;
+      margin: 60px auto;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .link-button {
+      display: inline-block;
+      padding: 14px 32px;
+      background: #ff69b4;
+      color: white;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(255,105,180,0.4);
+      transition: all 0.3s;
+    }
+
+    .link-button:hover {
+      background: #ff1493;
+      transform: translateY(-3px);
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-section h1 {
+        font-size: 2em;
+      }
+
+      .vocab-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .navigation-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="index.html" class="logo">K-Culture Connect</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="app.html">App</a></li>
+        <li><a href="vocabulary.html" class="active">Vocabulary</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="problem.html">Problem</a></li>
+        <li><a href="solution.html">Solution</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="impact.html">Impact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <h1>Korean Vocabulary</h1>
+      <p>Build your Korean vocabulary through interactive flashcards and cultural context</p>
+    </section>
+
+    <section>
+      <h2>Essential Korean Words</h2>
+      
+      <div class="vocab-grid">
+        <div class="vocab-card">
+          <div class="card-front">
+            <div class="korean">안녕하세요</div>
+            <div class="english">Hello (formal)</div>
+            <div class="example">Pronounced: an-nyeong-ha-se-yo</div>
+          </div>
+        </div>
+
+        <div class="vocab-card">
+          <div class="card-front">
+            <div class="korean">감사합니다</div>
+            <div class="english">Thank you</div>
+            <div class="example">Pronounced: gam-sa-hap-ni-da</div>
+          </div>
+        </div>
+
+        <div class="vocab-card">
+          <div class="card-front">
+            <div class="korean">사랑해요</div>
+            <div class="english">I love you</div>
+            <div class="example">Pronounced: sa-rang-hae-yo</div>
+          </div>
+        </div>
+
+        <div class="vocab-card">
+          <div class="card-front">
+            <div class="korean">맛있어요</div>
+            <div class="english">Delicious</div>
+            <div class="example">Pronounced: ma-si-sseo-yo</div>
+          </div>
+        </div>
+
+        <div class="vocab-card">
+          <div class="card-front">
+            <div class="korean">좋아요</div>
+            <div class="english">Good / I like it</div>
+            <div class="example">Pronounced: jo-a-yo</div>
+          </div>
+        </div>
+
+        <div class="vocab-card">
+          <div class="card-front">
+            <div class="korean">실례합니다</div>
+            <div class="english">Excuse me</div>
+            <div class="example">Pronounced: sil-rye-hap-ni-da</div>
+          </div>
+        </div>
+
+        <div class="vocab-card">
+          <div class="card-front">
+            <div class="korean">물</div>
+            <div class="english">Water</div>
+            <div class="example">Pronounced: mul</div>
+          </div>
+        </div>
+
+        <div class="vocab-card">
+          <div class="card-front">
+            <div class="korean">밥</div>
+            <div class="english">Rice / Food</div>
+            <div class="example">Pronounced: bap</div>
+          </div>
+        </div>
+
+        <div class="vocab-card">
+          <div class="card-front">
+            <div class="korean">오빠</div>
+            <div class="english">Older brother (affectionate)</div>
+            <div class="example">Pronounced: o-ppa</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 K-Culture Connect. Created by Wong Ming Lai & Yu Ying Ling.</p>
+  </footer>
+
+</body>
+</html>

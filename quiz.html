@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>K-Culture Quiz - Test Your Knowledge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #fff5f8, #f0f8ff, #f5fff8);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .quiz-container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .quiz-header {
+      background: linear-gradient(135deg, #ff69b4, #c71585);
+      color: white;
+      padding: 25px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .quiz-title {
+      font-size: 1.4em;
+      font-weight: 700;
+    }
+
+    .timer {
+      background: rgba(255,255,255,0.2);
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 1.1em;
+    }
+
+    .timer.warning {
+      background: #ff4757;
+      animation: pulse 0.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+    .progress-container {
+      padding: 20px 30px 10px;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: #eee;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff69b4, #c71585);
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    .question-container {
+      padding: 30px;
+    }
+
+    .question-number {
+      color: #ff69b4;
+      font-weight: 600;
+      font-size: 0.95em;
+      margin-bottom: 10px;
+    }
+
+    .question-text {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 30px;
+      line-height: 1.4;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option {
+      padding: 18px 22px;
+      border: 2px solid #eee;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-size: 1.1em;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .option:hover {
+      border-color: #ff69b4;
+      background: #fff5f8;
+    }
+
+    .option-letter {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #666;
+      transition: all 0.25s;
+    }
+
+    .option:hover .option-letter {
+      background: #ff69b4;
+      color: white;
+    }
+
+    .option.correct {
+      border-color: #2ed573;
+      background: #e8f8f0;
+    }
+
+    .option.correct .option-letter {
+      background: #2ed573;
+      color: white;
+    }
+
+    .option.incorrect {
+      border-color: #ff4757;
+      background: #ffe8e8;
+    }
+
+    .option.incorrect .option-letter {
+      background: #ff4757;
+      color: white;
+    }
+
+    .option.disabled {
+      pointer-events: none;
+    }
+
+    .feedback {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-align: center;
+      display: none;
+    }
+
+    .feedback.show {
+      display: block;
+      animation: slideUp 0.3s ease;
+    }
+
+    .feedback.correct {
+      background: #e8f8f0;
+      color: #2ed573;
+    }
+
+    .feedback.incorrect {
+      background: #ffe8e8;
+      color: #ff4757;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn {
+      padding: 15px 40px;
+      background: linear-gradient(135deg, #ff69b4, #c71585);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(255,105,180,0.4);
+    }
+
+    .btn.hidden {
+      display: none;
+    }
+
+    .results {
+      text-align: center;
+      padding: 50px 30px;
+    }
+
+    .results-score {
+      font-size: 4em;
+      font-weight: 700;
+      color: #c71585;
+      margin-bottom: 10px;
+    }
+
+    .results-message {
+      font-size: 1.3em;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <div class="quiz-title">Korean Vocabulary Quiz</div>
+      <div class="timer" id="timer">02:00</div>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+      </div>
+      <div class="progress-text">
+        <span>Question <span id="currentQ">1</span> of <span id="totalQ">5</span></span>
+        <span id="scoreText">Score: 0</span>
+      </div>
+    </div>
+
+    <div class="question-container" id="questionContainer">
+      <div class="question-number" id="questionNumber">Question 1</div>
+      <div class="question-text" id="questionText">Loading question...</div>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback"></div>
+      <button class="btn" id="nextBtn">Next Question</button>
+    </div>
+
+    <div class="results hidden" id="results">
+      <div class="results-score" id="resultsScore">0%</div>
+      <div class="results-message" id="resultsMessage">Great job!</div>
+      <button class="btn" onclick="location.reload()">Try Again</button>
+      <a href="index.html" class="btn" style="display:inline-block; margin-left:10px; text-decoration:none; background:#666;">Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "What does '안녕하세요' (annyeonghaseyo) mean?",
+        options: ["Hello", "Goodbye", "Thank you", "Sorry"],
+        correct: 0
+      },
+      {
+        question: "What does '감사합니다' (gamsahamnida) mean?",
+        options: ["Hello", "Goodbye", "Thank you", "Please"],
+        correct: 2
+      },
+      {
+        question: "How do you say 'Yes' in Korean?",
+        options: ["아니요 (aniyo)", "네 (ne)", "안녕 (annyeong)", "고마워 (gomawo)"],
+        correct: 1
+      },
+      {
+        question: "What does '사랑해요' (saranghaeyo) mean?",
+        options: ["I miss you", "I like you", "I love you", "Nice to meet you"],
+        correct: 2
+      },
+      {
+        question: "What does '잘 있어요' (jal isseoyo) mean?",
+        options: ["Goodbye", "Nice to meet you", "Take care", "How are you"],
+        correct: 2
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let timeLeft = 120;
+    let timerInterval;
+
+    const letters = ['A', 'B', 'C', 'D'];
+
+    function initQuiz() {
+      document.getElementById('totalQ').textContent = questions.length;
+      showQuestion();
+      startTimer();
+    }
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        const timerEl = document.getElementById('timer');
+        timerEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        if (timeLeft <= 10) {
+          timerEl.classList.add('warning');
+        }
+        
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          showResults();
+        }
+      }, 1000);
+    }
+
+    function showQuestion() {
+      const q = questions[currentQuestion];
+      document.getElementById('questionNumber').textContent = `Question ${currentQuestion + 1}`;
+      document.getElementById('questionText').textContent = q.question;
+      document.getElementById('currentQ').textContent = currentQuestion + 1;
+      document.getElementById('progressFill').style.width = `${(currentQuestion / questions.length) * 100}%`;
+      
+      const optionsEl = document.getElementById('options');
+      optionsEl.innerHTML = '';
+      
+      q.options.forEach((option, index) => {
+        const optionEl = document.createElement('div');
+        optionEl.className = 'option';
+        optionEl.innerHTML = `
+          <span class="option-letter">${letters[index]}</span>
+          <span>${option}</span>
+        `;
+        optionEl.onclick = () => selectAnswer(index);
+        optionsEl.appendChild(optionEl);
+      });
+
+      document.getElementById('feedback').className = 'feedback';
+      document.getElementById('nextBtn').className = 'btn hidden';
+    }
+
+    function selectAnswer(index) {
+      const q = questions[currentQuestion];
+      const options = document.querySelectorAll('.option');
+      const feedback = document.getElementById('feedback');
+      
+      options.forEach(opt => opt.classList.add('disabled'));
+      
+      if (index === q.correct) {
+        options[index].classList.add('correct');
+        feedback.textContent = '✓ Correct! Well done!';
+        feedback.className = 'feedback show correct';
+        score++;
+        document.getElementById('scoreText').textContent = `Score: ${score}`;
+      } else {
+        options[index].classList.add('incorrect');
+        options[q.correct].classList.add('correct');
+        feedback.textContent = '✗ Incorrect. The correct answer is highlighted.';
+        feedback.className = 'feedback show incorrect';
+      }
+
+      document.getElementById('nextBtn').className = 'btn';
+    }
+
+    document.getElementById('nextBtn').onclick = () => {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        showResults();
+      }
+    };
+
+    function showResults() {
+      clearInterval(timerInterval);
+      document.getElementById('questionContainer').classList.add('hidden');
+      document.getElementById('results').classList.remove('hidden');
+      
+      const percentage = Math.round((score / questions.length) * 100);
+      document.getElementById('resultsScore').textContent = `${percentage}%`;
+      
+      let message;
+      if (percentage >= 80) message = "Excellent! You're a Korean star! ⭐";
+      else if (percentage >= 60) message = "Good job! Keep practicing!";
+      else message = "Nice try! Practice makes perfect!";
+      
+      document.getElementById('resultsMessage').textContent = message;
+    }
+
+    initQuiz();
+  </script>
+</body>
+</html>

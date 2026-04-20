@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Player</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="common.css" rel="stylesheet">
+  <style>
+    .audio-player {
+      background: linear-gradient(135deg, #fff5f8, #f0f8ff);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: 40px auto;
+    }
+
+    .player-title {
+      color: #c71585;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn-control {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 50%;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-control:hover {
+      background: rgba(255,105,180,0.1);
+    }
+
+    .btn-control svg {
+      width: 24px;
+      height: 24px;
+      fill: #333;
+    }
+
+    .btn-play {
+      background: linear-gradient(135deg, #ff69b4, #c71585);
+      width: 60px;
+      height: 60px;
+    }
+
+    .btn-play svg {
+      fill: white;
+      width: 28px;
+      height: 28px;
+    }
+
+    .btn-play:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 20px rgba(255,105,180,0.4);
+    }
+
+    .speed-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f5f5f5;
+      padding: 8px 15px;
+      border-radius: 20px;
+    }
+
+    .speed-control label {
+      font-size: 0.85em;
+      color: #666;
+    }
+
+    .speed-control select {
+      border: none;
+      background: transparent;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1em;
+      font-weight: 600;
+      color: #c71585;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .btn-repeat {
+      position: relative;
+    }
+
+    .btn-repeat.active svg {
+      fill: #c71585;
+    }
+
+    .btn-repeat.active::after {
+      content: '1';
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: 10px;
+      font-weight: bold;
+      color: #c71585;
+    }
+
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .volume-control svg {
+      width: 20px;
+      height: 20px;
+      fill: #666;
+    }
+
+    .volume-slider {
+      flex: 1;
+      height: 4px;
+      background: #eee;
+      border-radius: 2px;
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      background: #c71585;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .word-display {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .korean-word {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #c71585;
+      margin-bottom: 5px;
+    }
+
+    .meaning {
+      color: #666;
+      font-size: 1.2em;
+    }
+
+    .word-list {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .word-btn {
+      width: 40px;
+      height: 40px;
+      border: 2px solid #eee;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+      font-weight: 600;
+      color: #666;
+      transition: all 0.3s;
+    }
+
+    .word-btn:hover, .word-btn.active {
+      border-color: #ff69b4;
+      background: #fff5f8;
+      color: #c71585;
+    }
+
+    .audio-source-note {
+      text-align: center;
+      font-size: 0.8em;
+      color: #999;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">K-Culture Connect</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="app.html">App</a></li>
+        <li><a href="audio-player.html">Pronunciation</a></li>
+        <li><a href="vocabulary.html">Vocabulary</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="problem.html">Problem</a></li>
+        <li><a href="solution.html">Solution</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="stats.html">Statistics</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+<div class="audio-player">
+      <div class="player-title">🎵 Korean Pronunciation</div>
+      
+      <div class="word-display">
+        <div class="korean-word" id="koreanWord">안녕하세요</div>
+        <div class="meaning" id="meaning">Hello</div>
+      </div>
+      
+      <div class="word-list">
+        <button class="word-btn" data-ko="안녕하세요" data-en="Hello">1</button>
+        <button class="word-btn" data-ko="감사���니다" data-en="Thank you">2</button>
+        <button class="word-btn" data-ko="사랑해요" data-en="I love you">3</button>
+        <button class="word-btn" data-ko="네" data-en="Yes">4</button>
+        <button class="word-btn" data-ko="아니요" data-en="No">5</button>
+      </div>
+
+      <div class="controls">
+        <div class="speed-control">
+          <label>Speed</label>
+          <select id="speedSelect">
+            <option value="0.5">0.5x</option>
+            <option value="0.75">0.75x</option>
+            <option value="1" selected>1x</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+          </select>
+        </div>
+
+        <button class="btn-control btn-repeat" id="repeatBtn" title="Repeat">
+          <svg viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
+        </button>
+
+        <button class="btn-control btn-play" id="playBtn" title="Play/Pause">
+          <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+
+        <button class="btn-control" id="prevBtn" title="Previous">
+          <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+
+        <button class="btn-control" id="nextBtn" title="Next">
+          <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+        </button>
+      </div>
+
+      <div class="volume-control">
+        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="75">
+      </div>
+    </div>
+
+      <div class="audio-source-note">
+        Uses Web Speech API - Korean voice required
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="app.html">App</a>
+      <a href="vocabulary.html">Vocabulary</a>
+      <a href="resources.html">Resources</a>
+      <a href="problem.html">Problem</a>
+      <a href="solution.html">Solution</a>
+      <a href="process.html">Process</a>
+      <a href="impact.html">Impact</a>
+      <a href="stats.html">Statistics</a>
+      <a href="quiz.html">Quiz</a>
+    </div>
+    <p>&copy; 2024 K-Culture Connect. Created by Wong Ming Lai & Yu Ying Ling.</p>
+  </footer>
+
+  <script>
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const repeatBtn = document.getElementById('repeatBtn');
+    const speedSelect = document.getElementById('speedSelect');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const koreanWord = document.getElementById('koreanWord');
+    const meaning = document.getElementById('meaning');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const wordBtns = document.querySelectorAll('.word-btn');
+
+    let isPlaying = false;
+    let isRepeating = false;
+    let currentWordIndex = 0;
+    let synth = window.speechSynthesis;
+    let utterance = null;
+
+    const words = [
+      { ko: '안녕하세요', en: 'Hello' },
+      { ko: '감사합니다', en: 'Thank you' },
+      { ko: '사랑해요', en: 'I love you' },
+      { ko: '네', en: 'Yes' },
+      { ko: '아니요', en: 'No' }
+    ];
+
+    function speakKorean(text) {
+      if (synth.speaking) {
+        synth.cancel();
+      }
+      
+      utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'ko-KR';
+      utterance.rate = parseFloat(speedSelect.value);
+      utterance.volume = volumeSlider.value / 100;
+      
+      const voices = synth.getVoices();
+      const koreanVoice = voices.find(v => v.lang.includes('ko')) || voices[0];
+      if (koreanVoice) {
+        utterance.voice = koreanVoice;
+      }
+      
+      utterance.onstart = () => {
+        isPlaying = true;
+        updatePlayIcon();
+      };
+      
+      utterance.onend = () => {
+        isPlaying = false;
+        updatePlayIcon();
+        
+        if (isRepeating) {
+          setTimeout(() => speakKorean(text), 500);
+        }
+      };
+      
+      synth.speak(utterance);
+    }
+
+    function updatePlayIcon() {
+      if (isPlaying) {
+        playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+      } else {
+        playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+      }
+    }
+
+    function loadWord(index) {
+      currentWordIndex = index;
+      const word = words[index];
+      koreanWord.textContent = word.ko;
+      meaning.textContent = word.en;
+      
+      wordBtns.forEach((btn, i) => btn.classList.toggle('active', i === index));
+    }
+
+    function playCurrentWord() {
+      speakKorean(words[currentWordIndex].ko);
+    }
+
+    playBtn.addEventListener('click', playCurrentWord);
+
+    repeatBtn.addEventListener('click', () => {
+      isRepeating = !isRepeating;
+      repeatBtn.classList.toggle('active', isRepeating);
+    });
+
+    speedSelect.addEventListener('change', (e) => {
+      if (utterance) {
+        utterance.rate = parseFloat(e.target.value);
+      }
+    });
+
+    volumeSlider.addEventListener('input', (e) => {
+      if (utterance) {
+        utterance.volume = e.target.value / 100;
+      }
+    });
+
+    wordBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        loadWord(index);
+        playCurrentWord();
+      });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentWordIndex > 0) {
+        loadWord(currentWordIndex - 1);
+        playCurrentWord();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentWordIndex < words.length - 1) {
+        loadWord(currentWordIndex + 1);
+        playCurrentWord();
+      }
+    });
+
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+      speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+    }
+
+    loadWord(0);
+  </script>
+</body>
+</html>

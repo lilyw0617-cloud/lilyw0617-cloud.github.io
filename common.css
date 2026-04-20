@@ -32,11 +32,20 @@ nav {
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
   font-size: 1.8em;
   font-weight: 700;
   color: #c71585;
   text-decoration: none;
 }
+
+.logo img {
+  height: 46px;
+  width: auto;
+  display: block;
+}
+
 
 .nav-links {
   display: flex;
